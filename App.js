@@ -6,6 +6,7 @@
  * @flow strict-local
  */
 
+import 'react-native-gesture-handler';
 import React from 'react';
 
 import {
@@ -24,12 +25,25 @@ import Routes from './Src/Routes';
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
 
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { AboutScreen, LoginScreen } from './Src/screen';
+import { NavigationContainer } from '@react-navigation/native';
+import AppContextProvider from './Src/contexts/AppContextProvider';
 
+const Drawer = createDrawerNavigator();
 const App = () => {
   
 
   return (
-    <Routes/>
+    // <Text>pratyush</Text>
+    <NavigationContainer>
+     <AppContextProvider>
+     <Routes/>
+
+     </AppContextProvider>
+    </NavigationContainer>
+       
+
   );
 };
 

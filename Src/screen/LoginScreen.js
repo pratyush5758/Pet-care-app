@@ -1,11 +1,20 @@
-import {Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {IMAGES} from '../assets';
+import { useNavigation } from '@react-navigation/native';
+import { useAppContext } from '../contexts/AppContextProvider';
 
 const LoginScreen = () => {
+  const navigation = useNavigation();
+  const { setIsLoggedIn } = useAppContext()
+  const handleLogin = () => {
+    setIsLoggedIn(true)
+  }
+
   return (
     <SafeAreaView>
-      <View>
+    <ScrollView>
+    <View>
         <Image source={IMAGES.DOG} style={styles.img}/>
       </View>
       <View style={styles.mainview}>
@@ -15,10 +24,12 @@ const LoginScreen = () => {
         <View style={styles.primaryview}>
           <Text style={styles.primarytext}>Connect with 5-star pet caregivers near you who offer boarding, walking, house, sitting or day care.</Text>
         </View>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn} onPress={handleLogin}>
           <Text style={{marginVertical:5,fontSize:20,color:'white'}}>Swipe To Start</Text>
         </TouchableOpacity>
       </View>
+    </ScrollView>
+      
     </SafeAreaView>
   );
 };
